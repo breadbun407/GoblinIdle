@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ifnbehdco3p2"]
+[gd_scene load_steps=8 format=3 uid="uid://ifnbehdco3p2"]
 
 [ext_resource type="Texture2D" uid="uid://bcmfic5dhcpcq" path="res://Icons/goblin.png" id="1_4esyi"]
 [ext_resource type="Script" path="res://Goblins/scrap_heap_goblin.gd" id="1_vigrt"]
 [ext_resource type="PackedScene" uid="uid://v2a1gc2sbc05" path="res://Scrap/scrap_block.tscn" id="2_16862"]
+[ext_resource type="PackedScene" uid="uid://ccpbi76rk4qiy" path="res://Component/travel_component.tscn" id="3_brni3"]
 
 [sub_resource type="Animation" id="Animation_35x2h"]
 length = 0.001
@@ -45,6 +46,8 @@ _data = {
 [node name="ScrapHeapGoblin" type="Node2D"]
 script = ExtResource("1_vigrt")
 scrap_block_scene = ExtResource("2_16862")
+
+[node name="TravelComponent" parent="." instance=ExtResource("3_brni3")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_4esyi")

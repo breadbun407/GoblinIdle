@@ -1,104 +1,41 @@
-extends Node2D
+extends Goblin
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var bored_goblin_timer: Timer = $BoredGoblinTimer
 @onready var fade_timer: Timer = $FadeTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var travel_component: TravelComponent = $TravelComponent
 
 @export var scrap_block_scene: PackedScene
-@export var speed = 100
+@export var speed = 400
 
-
-var collecting_scrap: bool = false
 var bored: bool = false
 
 var scrap_heap_parent = null
 var time_left: float = 0.0  # To store the remaining fade time
 var original_alpha: float = 1.0  # To store the original alpha of the sprite
 
-enum STATE {COLLECTING_SCRAP, DELIVERING_SCRAP, BORED}
 var state = STATE.BORED
 
-var tween
-
-var carried_scrap = null
-var carrying_scrap = false
-
-
 func _ready() -> void:
-	collecting_scrap = true
 	bored_goblin_timer.timeout.connect(on_bored_goblin_timer_timeout)
 	fade_timer.timeout.connect(on_fade_timer_timeout)
 
 	GoblinManager.scrap_heap_goblin_hired.emit()
 	GoblinManager.parent_set_to_heap.connect(on_parent_set_to_heap)
-	ScrapManager.scrap_all_gone.connect(on_scrap_all_gone)
 
-	GoblinManager.goblin_collected_scrap.connect(on_goblin_collected_scrap)
-	GoblinManager.goblin_delivered_scrap.connect(on_goblin_delivered_scrap)
 
 func _process(delta: float) -> void:
 	if state == STATE.BORED:
 		animation_player.play("bored_anim")
-		if tween:
-			tween.kill()
+		if travel_component.tween:
+			travel_component.tween.kill()
 
-	if carrying_scrap:
-		carried_scrap.position = Vector2(0, -100)
-
-func move_toward_scrap_pile(target: Vector2):
-	if state == STATE.BORED:
-		if scrap_heap_parent.scrap_in_pile > 0 or carrying_scrap == true:
-			bored_goblin_timer.stop()
-			fade_timer.stop()
-			sprite.modulate.a = 1
-			bored = false
-			# Calculate the distance between the goblin and the target
-			var distance = global_position.distance_to(target)
-
-			# Calculate the duration based on the distance and speed
-			var duration = distance / speed
-
-			# Use Tween to move the goblin to the target global_position at a consistent speed
-			tween = create_tween()
-			tween.tween_property(self, "global_position", target, duration).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
-			state = STATE.COLLECTING_SCRAP
-
-			# Optionally, you can connect the tween_completed signal if you want to trigger something after the move.
-			tween.finished.connect(on_scrap_pile_tween_completed)
-
-func on_scrap_pile_tween_completed():
-	GoblinManager.goblin_collected_scrap.emit(self)
-	var varied_position = Vector2(randi_range(-50, 50), randi_range(-50, 50))
-	var target = get_tree().get_first_node_in_group("scrap_heap").global_position + varied_position
-	move_toward_scrap_heap(target)
-
-func move_toward_scrap_heap(target):
-	if state == STATE.COLLECTING_SCRAP:
-
-	# Calculate the distance between the goblin and the target
-		var distance = global_position.distance_to(target)
-
-		# Calculate the duration based on the distance and speed
-		var duration = distance / speed
-
-		# Use Tween to move the goblin to the target global_position at a consistent speed
-		tween = create_tween()
-		tween.tween_property(self, "global_position", target, duration).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
-		state = STATE.DELIVERING_SCRAP
-
-		# Optionally, you can connect the tween_completed signal if you want to trigger something after the move.
-		tween.finished.connect(on_scrap_heap_tween_completed)
-
-func on_scrap_heap_tween_completed():
-	GoblinManager.goblin_delivered_scrap.emit(self)
-	state = STATE.BORED
-	if scrap_heap_parent:
-		on_parent_set_to_heap()
-
-func set_collecting_scrap(is_collecting_scrap):
-	if not is_collecting_scrap and bored == false:
-		bored_goblin()
+func setup_travel(destination, home, item_to_carry, item_to_carry_scene):
+	travel_component.destination = destination
+	travel_component.home = home
+	travel_component.item_to_carry = item_to_carry
+	travel_component.item_to_carry_scene = item_to_carry_scene
 
 func bored_goblin():
 	bored = true
@@ -139,23 +76,9 @@ func on_bored_goblin_timer_timeout() -> void:
 	queue_free()
 
 func on_parent_set_to_heap():
-	var varied_position = Vector2(randi_range(-50, 50), randi_range(-50, 50))
-	move_toward_scrap_pile(scrap_heap_parent.global_position + varied_position)
-
-func on_scrap_all_gone():
-	if carrying_scrap == false:
-		state = STATE.BORED
-
-func on_goblin_collected_scrap(goblin):
-	if goblin == self:
-		var scrap_block = scrap_block_scene.instantiate()
-		add_child(scrap_block)
-		carrying_scrap = true
-		carried_scrap = scrap_block
-		scrap_block.position = Vector2(0, -100)
-
-func on_goblin_delivered_scrap(goblin: Node):
-	if goblin == self:
-		if carrying_scrap:
-			carrying_scrap = false
-			carried_scrap.queue_free()
+	var scrap_heap = get_tree().get_first_node_in_group("scrap_heap")
+	var scrap_pile = scrap_heap_parent
+	var item_to_carry = "Scrap"
+	var item_to_carry_scene = scrap_block_scene
+	setup_travel(scrap_pile, scrap_heap, item_to_carry, item_to_carry_scene)
+	travel_component.begin_travel()

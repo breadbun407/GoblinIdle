@@ -92,7 +92,8 @@ func on_goblin_collected_scrap(goblin):
 func goblins_not_collecting_scrap():
 	for goblin in goblin_array:
 		if goblin != null:
-			goblin.set_collecting_scrap(false)
+			pass
+			#goblin.set_collecting_scrap(false)
 
 
 func on_clickable_area_clicked(viewport: Node, event: InputEvent, shape_idx: int):
