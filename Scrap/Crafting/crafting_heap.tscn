@@ -1,0 +1,108 @@
+[gd_scene load_steps=7 format=3 uid="uid://dahxecm48fdrm"]
+
+[ext_resource type="Script" path="res://Scrap/Crafting/crafting_heap.gd" id="1_flgvy"]
+[ext_resource type="Texture2D" uid="uid://3c0effc0nipn" path="res://Icons/chisel.png" id="1_xynbl"]
+[ext_resource type="PackedScene" uid="uid://cik10fo22lkp2" path="res://Goblins/crafting_heap_goblin.tscn" id="2_nqdu3"]
+[ext_resource type="PackedScene" uid="uid://clp4pi1kvl5yp" path="res://Scrap/Crafting/crafted_scrap_object.tscn" id="3_wt1yi"]
+[ext_resource type="PackedScene" uid="uid://cj2xbm07jrrv2" path="res://Scrap/Crafting/Storage/storage_heap.tscn" id="5_6pedv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8qpq"]
+size = Vector2(128, 128)
+
+[node name="CraftingHeap" type="Node2D"]
+script = ExtResource("1_flgvy")
+crafting_heap_goblin_scene = ExtResource("2_nqdu3")
+crafted_scrap_object_scene = ExtResource("3_wt1yi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xynbl")
+
+[node name="ClickableArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableArea2D"]
+shape = SubResource("RectangleShape2D_f8qpq")
+
+[node name="ScrapCraftingPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 0)
+offset_left = -131.0
+offset_top = -106.0
+offset_right = 129.0
+offset_bottom = -66.0
+pivot_offset = Vector2(130, 0)
+
+[node name="NumberOfGoblinsLabel" type="Label" parent="ScrapCraftingPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -11.5
+offset_right = 104.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "10 Goblins Crafting Scrap Objects"
+horizontal_alignment = 1
+
+[node name="CraftedObjectPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(290, 0)
+offset_left = -145.0
+offset_top = 89.0
+offset_right = 145.0
+offset_bottom = 129.0
+pivot_offset = Vector2(145, 0)
+
+[node name="NumberOfCraftedObjectsLabel" type="Label" parent="CraftedObjectPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -11.5
+offset_right = 104.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "10 Crafted Scrap Objects in Storage"
+horizontal_alignment = 1
+
+[node name="ScrapToBeUsedPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+offset_left = -321.0
+offset_top = -23.0
+offset_right = -71.0
+offset_bottom = 17.0
+
+[node name="ScrapToBeUsedLabel" type="Label" parent="ScrapToBeUsedPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -11.5
+offset_right = 104.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "10 Scrap awaiting use"
+horizontal_alignment = 1
+
+[node name="CraftingScrapTimer" type="Timer" parent="."]
+
+[node name="GoblinLayer" type="Node2D" parent="."]
+position = Vector2(146, 0)
+
+[node name="StorageHeap" parent="." instance=ExtResource("5_6pedv")]
+position = Vector2(364, 1)

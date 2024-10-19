@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://3ax6ji506hsf"]
+
+[ext_resource type="Script" path="res://Globals/goblin_manager.gd" id="1_bglou"]
+
+[node name="GoblinManager" type="Node"]
+script = ExtResource("1_bglou")

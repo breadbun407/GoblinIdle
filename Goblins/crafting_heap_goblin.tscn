@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cik10fo22lkp2"]
+
+[ext_resource type="Script" path="res://Goblins/crafting_heap_goblin.gd" id="1_4c4nx"]
+[ext_resource type="Texture2D" uid="uid://d388cvm0gwv2y" path="res://Icons/orc-head.png" id="2_t7lfo"]
+
+[node name="CraftingHeapGoblin" type="Node2D"]
+script = ExtResource("1_4c4nx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_t7lfo")
+
+[node name="BoredGoblinTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="FadeTimer" type="Timer" parent="."]

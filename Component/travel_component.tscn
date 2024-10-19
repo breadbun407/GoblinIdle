@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccpbi76rk4qiy"]
+
+[ext_resource type="Script" path="res://Component/travel_component.gd" id="1_tsvpk"]
+
+[node name="TravelComponent" type="Node2D"]
+script = ExtResource("1_tsvpk")

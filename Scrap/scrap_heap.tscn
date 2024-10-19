@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://j3hvuueatdvk"]
+
+[ext_resource type="Script" path="res://Scrap/scrap_heap.gd" id="1_bnh5j"]
+[ext_resource type="PackedScene" uid="uid://v2a1gc2sbc05" path="res://Scrap/scrap_block.tscn" id="2_tlbcf"]
+[ext_resource type="Texture2D" uid="uid://b4yslbins3sar" path="res://Icons/basket.png" id="2_xeok4"]
+
+[node name="ScrapHeap" type="Node2D" groups=["scrap_heap"]]
+script = ExtResource("1_bnh5j")
+scrap_block_scene = ExtResource("2_tlbcf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xeok4")
+
+[node name="GoldTotalLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.5
+offset_top = 158.0
+offset_right = 88.5
+offset_bottom = 181.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GOLD: TOTAL AMOUNT"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(250, 0)
+offset_left = -126.0
+offset_top = 69.0
+offset_right = 124.0
+offset_bottom = 109.0
+
+[node name="ScrapTotalLabel" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.5
+offset_top = -11.5
+offset_right = 21.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Scrap: TOTAL AMOUNT"
+horizontal_alignment = 1
+
+[node name="SellScrapButton" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = -93.5
+offset_top = 115.0
+offset_right = 92.5
+offset_bottom = 146.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Sell 5 Scrap (10 gold)"
+
+[node name="ScrapBlockLayer" type="Node2D" parent="."]
+position = Vector2(0, -84)

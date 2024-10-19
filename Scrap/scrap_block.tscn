@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://v2a1gc2sbc05"]
+
+[ext_resource type="Script" path="res://Scrap/scrap_block.gd" id="1_7x8yq"]
+[ext_resource type="Texture2D" uid="uid://e2m0dk60pcph" path="res://Icons/stone-block.png" id="1_fgcx4"]
+
+[node name="ScrapBlock" type="Node2D"]
+script = ExtResource("1_7x8yq")
+sprite_size = Vector2(0.2, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fgcx4")

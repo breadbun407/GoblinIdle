@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://pkagrtneyp00"]
+
+[ext_resource type="Script" path="res://Globals/gold_manager.gd" id="1_wfjx2"]
+
+[node name="GoldManager" type="Node"]
+script = ExtResource("1_wfjx2")

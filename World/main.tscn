@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://p0wldr50pkmf"]
+
+[ext_resource type="Script" path="res://World/main.gd" id="1_r4rtj"]
+[ext_resource type="PackedScene" uid="uid://cey47tk3hpfsb" path="res://Scrap/scrap_pile.tscn" id="2_inxn6"]
+[ext_resource type="PackedScene" uid="uid://j3hvuueatdvk" path="res://Scrap/scrap_heap.tscn" id="3_upays"]
+[ext_resource type="PackedScene" uid="uid://dahxecm48fdrm" path="res://Scrap/Crafting/crafting_heap.tscn" id="4_d6hfk"]
+[ext_resource type="PackedScene" uid="uid://bkyl1pfsge5or" path="res://UI/resources.tscn" id="5_gul22"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_r4rtj")
+scrap_heap_scene = ExtResource("2_inxn6")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="ScrapPileSpawns" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="ScrapPileSpawns"]
+position = Vector2(411, -182)
+
+[node name="ScrapHeapSpawnerTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="ScrapHeap" parent="." instance=ExtResource("3_upays")]
+position = Vector2(-468, -187)
+
+[node name="CraftingHeap" parent="." instance=ExtResource("4_d6hfk")]
+position = Vector2(-446, 154)
+
+[node name="Resources" parent="." instance=ExtResource("5_gul22")]
+offset_left = -624.0
+offset_top = -346.0
+offset_right = -624.0
+offset_bottom = -346.0
