@@ -1,4 +1,5 @@
 extends Node2D
+class_name CraftedScrapObject
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var quality_label: Label = %QualityLabel
@@ -73,14 +74,26 @@ func set_price(chosen_quality):
 
 func sell_item():
 	GoldManager.gold_gained.emit(price)
+	StorageManager.clear_hovered_item()
 	queue_free()
 
 func on_mouse_entered():
+	if StorageManager.current_hovered_item != self:
+		StorageManager.set_hovered_item(self)
+		show_labels()
+
+func on_mouse_exited():
+	if StorageManager.current_hovered_item == self:
+		StorageManager.clear_hovered_item()
+
+# Show the labels and update label state
+func show_labels():
 	labels_panel.show()
 	labels_showing = true
 	z_index += 1
 
-func on_mouse_exited():
+# Hide the labels and reset label state
+func hide_labels():
 	labels_panel.hide()
 	labels_showing = false
 	z_index -= 1

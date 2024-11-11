@@ -1,15 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cik10fo22lkp2"]
+[gd_scene load_steps=5 format=3 uid="uid://blv226btih77e"]
 
 [ext_resource type="Script" path="res://Goblins/crafting_heap_goblin.gd" id="1_4c4nx"]
-[ext_resource type="Texture2D" uid="uid://d388cvm0gwv2y" path="res://Icons/orc-head.png" id="2_t7lfo"]
+[ext_resource type="PackedScene" uid="uid://dxyyru7mgqbrr" path="res://Goblins/goblin_base.tscn" id="1_xx40b"]
+[ext_resource type="PackedScene" uid="uid://ccpbi76rk4qiy" path="res://Component/travel_component.tscn" id="2_t2bsx"]
+[ext_resource type="PackedScene" uid="uid://v2a1gc2sbc05" path="res://Scrap/scrap_block.tscn" id="2_wko5w"]
 
-[node name="CraftingHeapGoblin" type="Node2D"]
+[node name="CraftingHeapGoblin" instance=ExtResource("1_xx40b")]
 script = ExtResource("1_4c4nx")
+scrap_block_scene = ExtResource("2_wko5w")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_t7lfo")
-
-[node name="BoredGoblinTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="FadeTimer" type="Timer" parent="."]
+[node name="TravelComponent" parent="." index="0" instance=ExtResource("2_t2bsx")]

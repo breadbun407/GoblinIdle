@@ -1,0 +1,12 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvedc3e4k78n5"]
+
+[ext_resource type="PackedScene" uid="uid://dxyyru7mgqbrr" path="res://Goblins/goblin_base.tscn" id="1_yyhef"]
+[ext_resource type="Script" path="res://Goblins/scrap_pile_goblin.gd" id="2_sy5c1"]
+[ext_resource type="PackedScene" uid="uid://v2a1gc2sbc05" path="res://Scrap/scrap_block.tscn" id="3_2p61a"]
+[ext_resource type="PackedScene" uid="uid://ccpbi76rk4qiy" path="res://Component/travel_component.tscn" id="4_usn3a"]
+
+[node name="ScrapPileGoblin" instance=ExtResource("1_yyhef")]
+script = ExtResource("2_sy5c1")
+scrap_block_scene = ExtResource("3_2p61a")
+
+[node name="TravelComponent" parent="." index="0" instance=ExtResource("4_usn3a")]

@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://Scrap/scrap_pile.gd" id="1_2mjx3"]
 [ext_resource type="Texture2D" uid="uid://yu6x3xjp03hm" path="res://Icons/stone-pile.png" id="2_8p554"]
-[ext_resource type="PackedScene" uid="uid://ifnbehdco3p2" path="res://Goblins/scrap_heap_goblin.tscn" id="2_wxjp3"]
+[ext_resource type="PackedScene" uid="uid://dvedc3e4k78n5" path="res://Goblins/scrap_pile_goblin.tscn" id="2_wxjp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w3u0b"]
 size = Vector2(128, 128)
 
-[node name="ScrapPile" type="Node2D"]
+[node name="ScrapPile" type="Node2D" groups=["scrap_pile"]]
 script = ExtResource("1_2mjx3")
 scrap_heap_goblin_scene = ExtResource("2_wxjp3")
 

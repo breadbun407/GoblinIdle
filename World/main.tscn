@@ -15,16 +15,16 @@ scrap_heap_scene = ExtResource("2_inxn6")
 [node name="ScrapPileSpawns" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="ScrapPileSpawns"]
-position = Vector2(411, -182)
+position = Vector2(326, -148)
 
 [node name="ScrapHeapSpawnerTimer" type="Timer" parent="."]
 autostart = true
 
 [node name="ScrapHeap" parent="." instance=ExtResource("3_upays")]
-position = Vector2(-468, -187)
+position = Vector2(-281, -154)
 
 [node name="CraftingHeap" parent="." instance=ExtResource("4_d6hfk")]
-position = Vector2(-446, 154)
+position = Vector2(-170, 127)
 
 [node name="Resources" parent="." instance=ExtResource("5_gul22")]
 offset_left = -624.0

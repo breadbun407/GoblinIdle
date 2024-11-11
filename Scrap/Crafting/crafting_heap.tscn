@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scrap/Crafting/crafting_heap.gd" id="1_flgvy"]
 [ext_resource type="Texture2D" uid="uid://3c0effc0nipn" path="res://Icons/chisel.png" id="1_xynbl"]
-[ext_resource type="PackedScene" uid="uid://cik10fo22lkp2" path="res://Goblins/crafting_heap_goblin.tscn" id="2_nqdu3"]
+[ext_resource type="PackedScene" uid="uid://blv226btih77e" path="res://Goblins/crafting_heap_goblin.tscn" id="2_nqdu3"]
 [ext_resource type="PackedScene" uid="uid://clp4pi1kvl5yp" path="res://Scrap/Crafting/crafted_scrap_object.tscn" id="3_wt1yi"]
 [ext_resource type="PackedScene" uid="uid://cj2xbm07jrrv2" path="res://Scrap/Crafting/Storage/storage_heap.tscn" id="5_6pedv"]
 
@@ -98,8 +98,6 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "10 Scrap awaiting use"
 horizontal_alignment = 1
-
-[node name="CraftingScrapTimer" type="Timer" parent="."]
 
 [node name="GoblinLayer" type="Node2D" parent="."]
 position = Vector2(146, 0)

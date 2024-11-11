@@ -5,16 +5,18 @@ extends Control
 @onready var goblin_scrap_collector_label: Label = %GoblinScrapCollectorLabel
 @onready var orc_scrap_crafter_label: Label = %OrcScrapCrafterLabel
 
-var scrap: int
-var gold: int
-var scrap_goblins: int
-var crafting_orcs: int
+var scrap: float
+var gold: float
+var scrap_goblins: float
+var crafting_orcs: float
 
 func _ready() -> void:
 	ScrapManager.update_scrap_label.connect(on_scrap_total_updated)
 	GoldManager.update_gold_label.connect(on_gold_total_updated)
 	GoblinManager.update_scrap_goblins_label.connect(on_scrap_goblins_updated)
 	GoblinManager.update_crafting_orcs_label.connect(on_crafting_orcs_updated)
+
+	get_starting_resources()
 
 func _process(delta: float) -> void:
 	update_label(scrap, gold, scrap_goblins, crafting_orcs)
@@ -37,3 +39,10 @@ func update_label(scrap_total, gold_total, scrap_goblins_total, crafting_orcs_to
 	gold_label.text =  "Gold: " + str(gold_total)
 	goblin_scrap_collector_label.text = "Scrap Goblins: " + str(scrap_goblins_total)
 	orc_scrap_crafter_label.text = "Crafting Orcs: " + str(crafting_orcs_total)
+
+
+func get_starting_resources():
+	scrap = ScrapManager.scrap_total
+	gold = GoldManager.gold_total
+	scrap_goblins = GoblinManager.scrap_heap_goblins_current
+	crafting_orcs = GoblinManager.crafting_heap_goblin_current

@@ -1,6 +1,219 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxyyru7mgqbrr"]
+[gd_scene load_steps=15 format=3 uid="uid://dxyyru7mgqbrr"]
 
 [ext_resource type="Script" path="res://Goblins/goblin_base.gd" id="1_n1fa0"]
+[ext_resource type="Texture2D" uid="uid://cwr6uhc82b7fb" path="res://Goblins/Assets/goblin scout - silhouette all animations-walk.png" id="3_cumay"]
+[ext_resource type="Material" uid="uid://ca8lriavi32bt" path="res://Goblins/Assets/Shaders/white_outline.tres" id="3_w7svy"]
+[ext_resource type="Texture2D" uid="uid://lwiiohaqd87f" path="res://Goblins/Assets/goblin scout - silhouette all animations-run.png" id="4_p46ah"]
+[ext_resource type="Texture2D" uid="uid://it828cipuoyr" path="res://Goblins/Assets/goblin scout - silhouette all animations-idle.png" id="5_i46y0"]
+[ext_resource type="Texture2D" uid="uid://1o11321seji5" path="res://Goblins/Assets/goblin scout - silhouette all animations-hit.png" id="6_tjo15"]
+[ext_resource type="Texture2D" uid="uid://b30iqldgsht3c" path="res://Goblins/Assets/goblin scout - silhouette all animations-death 1.png" id="7_jsi8k"]
+
+[sub_resource type="Animation" id="Animation_35x2h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GoblinWalk:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GoblinRun:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GoblinIdle:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GoblinHit:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GoblinDeath:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_h12xg"]
+resource_name = "goblin_death"
+length = 1.05
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GoblinDeath:frame")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11]
+}
+
+[sub_resource type="Animation" id="Animation_fcees"]
+resource_name = "goblin_hit"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GoblinHit:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_rpv32"]
+resource_name = "goblin_idle"
+length = 0.75
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GoblinIdle:frame")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_1ojjo"]
+resource_name = "goblin_run"
+length = 0.75
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GoblinRun:frame")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_5gnwd"]
+resource_name = "goblin_walk"
+length = 0.75
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GoblinWalk:frame")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kgnmm"]
+_data = {
+"RESET": SubResource("Animation_35x2h"),
+"goblin_death": SubResource("Animation_h12xg"),
+"goblin_hit": SubResource("Animation_fcees"),
+"goblin_idle": SubResource("Animation_rpv32"),
+"goblin_run": SubResource("Animation_1ojjo"),
+"goblin_walk": SubResource("Animation_5gnwd")
+}
 
 [node name="GoblinBase" type="Node2D"]
 script = ExtResource("1_n1fa0")
+
+[node name="BoredGoblinTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="FadeTimer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kgnmm")
+}
+
+[node name="GoblinWalk" type="Sprite2D" parent="."]
+visible = false
+material = ExtResource("3_w7svy")
+scale = Vector2(8, 8)
+texture = ExtResource("3_cumay")
+hframes = 8
+
+[node name="GoblinRun" type="Sprite2D" parent="."]
+visible = false
+material = ExtResource("3_w7svy")
+scale = Vector2(8, 8)
+texture = ExtResource("4_p46ah")
+hframes = 8
+
+[node name="GoblinIdle" type="Sprite2D" parent="."]
+visible = false
+material = ExtResource("3_w7svy")
+scale = Vector2(8, 8)
+texture = ExtResource("5_i46y0")
+hframes = 8
+
+[node name="GoblinHit" type="Sprite2D" parent="."]
+visible = false
+material = ExtResource("3_w7svy")
+scale = Vector2(8, 8)
+texture = ExtResource("6_tjo15")
+hframes = 3
+
+[node name="GoblinDeath" type="Sprite2D" parent="."]
+visible = false
+material = ExtResource("3_w7svy")
+scale = Vector2(8, 8)
+texture = ExtResource("7_jsi8k")
+hframes = 12

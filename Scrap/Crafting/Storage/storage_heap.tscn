@@ -1,10 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://cj2xbm07jrrv2"]
+[gd_scene load_steps=3 format=3 uid="uid://cj2xbm07jrrv2"]
 
-[ext_resource type="Texture2D" uid="uid://3c0effc0nipn" path="res://Icons/chisel.png" id="1_a4c3n"]
+[ext_resource type="Script" path="res://Scrap/Crafting/Storage/storage_heap.gd" id="1_32ic0"]
+[ext_resource type="Texture2D" uid="uid://d0uygbrquox2" path="res://Scrap/Crafting/Storage/storage_spot.png" id="2_f4e3j"]
 
 [node name="StorageHeap" type="Node2D"]
+z_index = -1
+script = ExtResource("1_32ic0")
+number_of_spots_for_objects = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = -0.785398
-scale = Vector2(2, 2)
-texture = ExtResource("1_a4c3n")
+scale = Vector2(8, 8)
+texture = ExtResource("2_f4e3j")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(49, 87)

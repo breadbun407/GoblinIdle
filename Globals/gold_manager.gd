@@ -15,13 +15,13 @@ func _ready() -> void:
 func on_gold_gained(amount_gained):
 	gold_total += amount_gained
 	var scrap_heap = get_tree().get_first_node_in_group("scrap_heap")
-	scrap_heap.update_label_text()
+	scrap_heap.update_label()
 
 	update_gold_label.emit(gold_total)
 
 func on_gold_used(amount_used):
 	gold_total -= amount_used
 	var scrap_heap = get_tree().get_first_node_in_group("scrap_heap")
-	scrap_heap.update_label_text()
+	scrap_heap.update_label()
 
 	update_gold_label.emit(gold_total)

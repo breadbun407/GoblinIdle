@@ -23,7 +23,7 @@ func spawn_scrap():
 		return
 	var scrap_heap = scrap_heap_scene.instantiate()
 	add_child(scrap_heap)
-	scrap_heap.name = "ScrapHeap" + str(scrap_heap_count)
+	scrap_heap.name = "ScrapPile" + str(scrap_heap_count)
 	scrap_heap_count += 1
 
 	var random_index = randi_range(0, spawn_points.size() - 1)
@@ -41,7 +41,7 @@ func update_camera():
 	var window_size = get_viewport().get_visible_rect().size
 
 	# Debugging: print the new window size
-	print("Window resized to: ", window_size)
+	#print("Window resized to: ", window_size)
 
 	# Update the camera zoom or adjust position based on new window size
 	var base_resolution = Vector2(1280, 720) # Your desired base resolution
