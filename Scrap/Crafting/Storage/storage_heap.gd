@@ -43,14 +43,14 @@ func add_resource(amount, item):
 		_:
 			print("Not an expected choice")
 
-func display_scrap_item(new_item):
-	var instanced_new_item = new_item.instantiate()
-	add_child(instanced_new_item)
+func display_scrap_item(carried_item):
+	carried_item.reparent(self)
+	#add_child(instanced_new_item)
 	#instanced_new_item.scale *= 0.9
 	var random_index = randi_range(0, spots.size() - 1)
 	var spot = spots.pop_at(random_index)
 	if spot == null:
 		print("NO SPOTS LEFT")
-		GoblinManager.storage_full.emit(instanced_new_item)
+		GoblinManager.storage_full.emit(carried_item)
 		return
-	instanced_new_item.position = spot.position
+	carried_item.position = spot.position

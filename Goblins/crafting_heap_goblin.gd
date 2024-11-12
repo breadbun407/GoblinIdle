@@ -4,6 +4,7 @@ class_name CraftingHeapGoblin
 @export var scrap_block_scene: PackedScene
 
 @onready var travel_component: TravelComponent = $TravelComponent
+@onready var waiting_timer: Timer = $WaitingTimer
 
 var crafting_scrap_object: bool = false
 var crafting_heap_parent = null
@@ -21,6 +22,7 @@ func _ready() -> void:
 
 	# Add signal to check when scrap total changes
 	ScrapManager.scrap_total_changed.connect(on_scrap_total_changed)
+	waiting_timer.timeout.connect(on_waiting_timer_timeout)
 
 func _process(delta: float) -> void:
 	if state == STATE.BORED:
@@ -103,15 +105,13 @@ func on_scrap_total_changed(new_total):
 		check_collect_or_craft()
 
 func on_storage_full(item):
-	if travel_component.carrying_item and travel_component.item_to_carry == "Crafted_scrap_object":
+	if travel_component.carrying_item and travel_component.carried_item == item:
+		print("GOBLIN IS WAITING: " + str(self))
 		state = STATE.WAITING
 		travel_component.available = false
-		var too_long_to_wait_timer = Timer.new()
-		too_long_to_wait_timer.wait_time = 2.0
-		too_long_to_wait_timer.one_shot = true
-		too_long_to_wait_timer.timeout.connect(got_bored_waiting)
+		waiting_timer.start()
 
-func got_bored_waiting():
+func on_waiting_timer_timeout():
 	print("bored")
 	travel_component.drop_item()
 	state = STATE.BORED

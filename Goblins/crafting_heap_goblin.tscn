@@ -10,3 +10,7 @@ script = ExtResource("1_4c4nx")
 scrap_block_scene = ExtResource("2_wko5w")
 
 [node name="TravelComponent" parent="." index="0" instance=ExtResource("2_t2bsx")]
+
+[node name="WaitingTimer" type="Timer" parent="." index="9"]
+wait_time = 2.0
+one_shot = true

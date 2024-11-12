@@ -103,7 +103,7 @@ func move_toward_home(target):
 func on_home_tween_completed():
 	if goblin is CraftingHeapGoblin and item_to_carry == "Crafted_scrap_object":
 		if home is StorageHeap:
-			home.display_scrap_item(item_to_carry_scene)
+			home.display_scrap_item(carried_item)
 	GoblinManager.goblin_delivered_item.emit(home, item_to_carry, goblin)
 	goblin.state = goblin.STATE.BORED
 	available = true
@@ -132,8 +132,12 @@ func on_goblin_collected_item(from, item, goblin_node):
 func on_goblin_delivered_item(to, item, goblin_node):
 	if goblin_node == goblin:
 		if carrying_item:
-			carrying_item = false
-			carried_item.queue_free()
+			if item_to_carry == "Crafted_scrap_object" and goblin.state == goblin.STATE.DELIVERING:
+				carrying_item = false
+				carried_item.scale = Vector2(1.0, 1.0)
+			else:
+				carrying_item = false
+				carried_item.queue_free()
 
 func drop_item():
 	#add animation for dropping item
